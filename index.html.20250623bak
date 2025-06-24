@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidan Lu - Interactive Resume</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f1f5f9; /* Tailwind slate-100 for a professional, clean background */
+        }
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #e2e8f0; /* Tailwind slate-200 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #94a3b8; /* Tailwind slate-400 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b; /* Tailwind slate-500 */
+        }
+        .nav-link.active {
+            color: #0ea5e9; /* Tailwind sky-500 for a vibrant, professional active link */
+            font-weight: 600;
+        }
+        .section-title {
+            font-size: 1.75rem; /* text-2xl */
+            font-weight: 700; /* bold */
+            color: #1e293b; /* Tailwind slate-800 for strong, professional headings */
+            margin-bottom: 1.5rem; /* mb-6 */
+            border-bottom: 2px solid #cbd5e1; /* Tailwind slate-300 for subtle separation */
+            padding-bottom: 0.5rem; /* pb-2 */
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.5rem; /* rounded-lg */
+            padding: 1.5rem; /* p-6 */
+            margin-bottom: 1.5rem; /* mb-6 */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+        }
+        .item-title {
+            font-size: 1.125rem; /* text-lg */
+            font-weight: 600; /* semibold */
+            color: #0f172a; /* Tailwind slate-900 for primary item titles */
+        }
+        .item-subtitle {
+            font-size: 1rem; /* text-base */
+            color: #475569; /* Tailwind slate-600 for subtitles and secondary text */
+            margin-bottom: 0.25rem; /* mb-1 */
+        }
+        .item-period {
+            font-size: 0.875rem; /* text-sm */
+            color: #64748b; /* Tailwind slate-500 for dates and less prominent info */
+            margin-bottom: 0.5rem; /* mb-2 */
+        }
+        .publication-doi, .contact-link {
+            color: #0ea5e9; /* Tailwind sky-500 for DOIs and contact links */
+            font-weight: 500; /* medium */
+            text-decoration: none;
+        }
+        .publication-doi:hover, .contact-link:hover {
+            text-decoration: underline;
+            color: #0284c7; /* Tailwind sky-600 on hover */
+        }
+
+        /* Mobile menu styles */
+        #mobile-menu {
+            transition: transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="bg-white shadow-md sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex space-x-7">
+                    <div>
+                        <!-- Website Logo -->
+                        <a href="#" class="flex items-center py-4 px-2">
+                            <span class="font-semibold text-slate-700 text-lg">Sidan Lu</span>
+                        </a>
+                    </div>
+                </div>
+                <!-- Primary Navbar items -->
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#summary" class="nav-link py-4 px-2 text-slate-600 hover:text-sky-500 transition duration-300">Summary</a>
+                    <a href="#appointments" class="nav-link py-4 px-2 text-slate-600 hover:text-sky-500 transition duration-300">Appointments</a>
+                    <a href="#education" class="nav-link py-4 px-2 text-slate-600 hover:text-sky-500 transition duration-300">Education</a>
+                    <a href="#publications" class="nav-link py-4 px-2 text-slate-600 hover:text-sky-500 transition duration-300">Publications</a>
+                    <a href="#grants" class="nav-link py-4 px-2 text-slate-600 hover:text-sky-500 transition duration-300">Grants</a>
+                    <a href="#presentations" class="nav-link py-4 px-2 text-slate-600 hover:text-sky-500 transition duration-300">Presentations</a>
+                    <a href="#honors" class="nav-link py-4 px-2 text-slate-600 hover:text-sky-500 transition duration-300">Honors</a>
+                    <a href="#teaching" class="nav-link py-4 px-2 text-slate-600 hover:text-sky-500 transition duration-300">Teaching</a>
+                    <a href="#activities" class="nav-link py-4 px-2 text-slate-600 hover:text-sky-500 transition duration-300">Activities</a>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class="w-6 h-6 text-slate-500 hover:text-sky-500"
+                            fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-full left-0 w-full bg-white shadow-lg transform -translate-y-full">
+            <ul class="">
+                <li><a href="#summary" class="nav-link block text-sm px-2 py-4 text-slate-700 hover:bg-sky-500 hover:text-white transition duration-300">Summary</a></li>
+                <li><a href="#appointments" class="nav-link block text-sm px-2 py-4 text-slate-700 hover:bg-sky-500 hover:text-white transition duration-300">Appointments</a></li>
+                <li><a href="#education" class="nav-link block text-sm px-2 py-4 text-slate-700 hover:bg-sky-500 hover:text-white transition duration-300">Education</a></li>
+                <li><a href="#publications" class="nav-link block text-sm px-2 py-4 text-slate-700 hover:bg-sky-500 hover:text-white transition duration-300">Publications</a></li>
+                <li><a href="#grants" class="nav-link block text-sm px-2 py-4 text-slate-700 hover:bg-sky-500 hover:text-white transition duration-300">Grants</a></li>
+                <li><a href="#presentations" class="nav-link block text-sm px-2 py-4 text-slate-700 hover:bg-sky-500 hover:text-white transition duration-300">Presentations</a></li>
+                <li><a href="#honors" class="nav-link block text-sm px-2 py-4 text-slate-700 hover:bg-sky-500 hover:text-white transition duration-300">Honors</a></li>
+                <li><a href="#teaching" class="nav-link block text-sm px-2 py-4 text-slate-700 hover:bg-sky-500 hover:text-white transition duration-300">Teaching</a></li>
+                <li><a href="#activities" class="nav-link block text-sm px-2 py-4 text-slate-700 hover:bg-sky-500 hover:text-white transition duration-300">Activities</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header id="hero" class="bg-gradient-to-r from-cyan-500 to-blue-600 text-white pt-20 pb-12 md:pt-28 md:pb-20">
+        <div class="max-w-4xl mx-auto px-6 text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4">Sidan Lu</h1>
+            <div class="flex flex-wrap justify-center items-center space-x-2 md:space-x-4 text-lg">
+                <a href="tel:225-888-5159" class="contact-link hover:text-sky-200 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 lucide lucide-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    225-888-5159
+                </a>
+                <span class="hidden md:inline text-slate-300">|</span>
+                <a href="mailto:sidan.lu@yale.edu" class="contact-link hover:text-sky-200 flex items-center">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                    sidan.lu@yale.edu
+                </a>
+                <span class="hidden md:inline text-slate-300">|</span>
+                <a href="https://orcid.org/0000-0002-5008-9467" target="_blank" rel="noopener noreferrer" class="contact-link hover:text-sky-200 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-1 lucide lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
+                    ORCID
+                </a>
+                <span class="hidden md:inline text-slate-300">|</span>
+                <a href="https://www.linkedin.com/in/sidanlu/en" target="_blank" rel="noopener noreferrer" class="contact-link hover:text-sky-200 flex items-center">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" class="mr-1">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                    </svg>
+                    LinkedIn
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto p-4 md:p-8 pt-8">
+        <!-- Summary Section -->
+        <section id="summary" class="scroll-mt-20 card">
+            <h2 class="section-title">Summary</h2>
+            <p class="text-slate-700 leading-relaxed">
+                Curious and driven researcher with deep expertise in electrochemical systems, membrane technologies, and resource recovery for sustainable applications. I have extensive hands-on experience designing, operating, and optimizing aqueous and non-aqueous electrochemical reactors for hydrogen production, wastewater treatment, and nutrients and organic acid recovery from renewable and waste-derived sources. My work combines electrochemical cell design with advanced materials characterization, guided by a strong commitment to circular economy principles, carbon reduction, and system-level innovation. Currently, I'm focused on advancing low-carbon, electro-driven processes for resource recovery and green materials development.
+            </p>
+        </section>
+
+        <!-- Appointments Section -->
+        <section id="appointments" class="scroll-mt-20 card">
+            <h2 class="section-title">Appointments</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="item-title">Postdoctoral Research Associate</h3>
+                    <p class="item-subtitle font-medium text-slate-700">Yale University</p>
+                    <p class="item-period">September 2024 - Present</p>
+                    <p class="text-slate-700">Topic: One-pot electrochemical synthesis of adipic acid from lignin-derived catechol</p>
+                    <p class="text-sm text-slate-600">Advisors: Paul Anastas and Julie Zimmerman</p>
+                </div>
+                <hr class="border-slate-200">
+                <div>
+                    <h3 class="item-title">Postdoctoral Research Associate</h3>
+                    <p class="item-subtitle font-medium text-slate-700">Princeton University</p>
+                    <p class="item-period">July 2021 - August 2024</p>
+                    <ul class="list-disc list-inside text-slate-700 space-y-1 pl-2">
+                        <li>Topic 1: Carbon redirection in wastewater anaerobic treatment for selective organic acids production</li>
+                        <li>Topic 2: Electro-membrane for pH-swing and in-situ distillation processes for organic acids extraction and separation from pH-neutral wastewater</li>
+                        <li>Topic 3: Electro-fabric distillation for clean water production from brine</li>
+                    </ul>
+                    <p class="text-sm text-slate-600 mt-2">Advisor: Z. Jason Ren</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="scroll-mt-20 card">
+            <h2 class="section-title">Education</h2>
+            <div class="space-y-6">
+                <div>
+                    <h3 class="item-title">Ph.D. in Environmental Engineering</h3>
+                    <p class="item-subtitle font-medium text-slate-700">Louisiana State University</p>
+                    <p class="item-period">August 2017 - May 2021</p>
+                    <p class="text-slate-700">Topic: Resource and energy recovery from wastewater using advanced (bio)electrochemical systems</p>
+                    <p class="text-sm text-slate-600">Advisor: Xiuping Zhu</p>
+                </div>
+                <hr class="border-slate-200">
+                <div>
+                    <h3 class="item-title">M.S. in Environmental Science</h3>
+                    <p class="item-subtitle font-medium text-slate-700">Beijing Normal University</p>
+                    <p class="item-period">August 2014 - May 2017</p>
+                    <p class="text-slate-700">Topic: Nitrogen recycling-related microbial ecology in nature waters</p>
+                    <p class="text-sm text-slate-600">Advisor: Yujiao Sun</p>
+                </div>
+                <hr class="border-slate-200">
+                <div>
+                    <h3 class="item-title">B.S. in Environmental Engineering</h3>
+                    <p class="item-subtitle font-medium text-slate-700">Harbin Institute of Technology</p>
+                    <p class="item-period">August 2010 - May 2014</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications Section -->
+        <section id="publications" class="scroll-mt-20 card">
+            <h2 class="section-title">Publications</h2>
+            <h3 class="text-xl font-semibold text-slate-700 mb-3">Peer Reviewed</h3>
+            <p class="text-sm text-slate-600 mb-4">(11 first author, h-index 11)</p>
+            <ol class="list-decimal list-outside space-y-3 pl-5 text-slate-700">
+                <li>Sidan Lu, Allyson McGaughey, Sungju Im, Yiming Liu, Xinyi Wang, Aaron Leininger, David Jassby, Eric Hoek, and Zhiyong Jason Ren*. Membrane electrolysis distillation for volatile fatty acids extraction from pH-neutral fermented wastewater. <em>Water Research</em> 265, 122306, 2024. <a href="https://doi.org/10.1016/j.watres.2024.122306" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1016/j.watres.2024.122306</a></li>
+                <li>Leininger, Aaron, Sidan Lu, Jinyue Jiang, Yanhong Bian, Harold D. May, and Zhiyong Jason Ren*. The convergence of lactic acid microbiomes and metabolites in long-term electrofermentation. <em>Environmental Science and Ecotechnology</em> 22, 100459, 2024. <a href="https://doi.org/10.1016/j.ese.2024.100459" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1016/j.ese.2024.100459</a></li>
+                <li>Sidan Lu, Aaron Leininger, David Jassby, Eric M. V. Hoek, Zhiyong Jason Ren. Temperature dependence of acids recovery from wastewater electro-fermentation. <em>Resources, Conservation and Recycling</em> 203, 147407, 2024. <a href="https://doi.org/10.1016/j.resconrec.2024.107407" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1016/j.resconrec.2024.107407</a></li>
+                <li>Sungju Im, Bongyeon Jung, Xinyi Wang, Jishan Wu, Minhao Xiao, Xin Chen, Javier A. Quezada-Renteria, Arpita Iddya, Derrick Dlamini, Sidan Lu, Christos T. Maravelias, Zhiyong Jason Ren, Eric M. V. Hoek, David Jassby*. High-efficiency recovery of acetic acid from water using electroactive gas-stripping membranes. <em>Environmental Science & Technology</em> 57 (27), 10096-10106, 2023. <a href="https://doi.org/10.1021/acs.est.3c01357" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1021/acs.est.3c01357</a></li>
+                <li>Wang, Xinyi, Sungju Im, Bongyeon Jung, Jishan Wu, Arpita Iddya, Quezada-Renteria A. Javier, Minhao Xiao, Sidan Lu, Byun Jaewon, Jeffrey Zhang, Zhiyong Jason Ren, Christos T. Maravelias, Eric M.V. Hoek*, David Jassby*. Simple and low-cost electroactive membranes for ammonia recovery. <em>Environmental Science & Technology</em> 57 (25), 9405-9415, 2023. <a href="https://doi.org/10.1021/acs.est.3c01470" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1021/acs.est.3c01470</a></li>
+                <li>Sidan Lu, Weiliang Sun, Xiuping Zhu*. Synergistic effects between dual-photoelectrodes and bioanode enhance sustainable hydrogen and electricity production from wastewater. <em>Resources, Conservation and Recycling</em> (183), 106367, 2022. <a href="https://doi.org/10.1016/j.resconrec.2022.106367" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1016/j.resconrec.2022.106367</a></li>
+                <li>Alessandro Galia, Guangcai Tan, Massimo Marino, Federica Proietto, Onofrio Scialdone, Sidan Lu, Xiuping Zhu. Special engines. <em>Salinity Gradient Heat Engines</em> 302, 2021. <a href="https://doi.org/10.1016/B978-0-08-102847-6.00007-3" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1016/B978-0-08-102847-6.00007-3</a></li>
+                <li>Sidan Lu, Jun Lan, Weiliang Sun, Xiaojia He, Xiuping Zhu. High energy recovery from salinity gradients in a concentration flow cell enhanced by bioelectrochemical currents. <em>Chemical Engineering Journal</em> (426), 130826, 2021. <a href="https://doi.org/10.1016/j.cej.2021.130826" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1016/j.cej.2021.130826</a></li>
+                <li>Sidan Lu, Baiyun Lu, Guangcai Tan, William Moe, Wangwang Xu, Ying Wang, Defeng Xing, Xiuping Zhu. Mo2N nanobelt cathodes for efficient hydrogen production in microbial electrolysis cells with shaped biofilm microbiome. <em>Biosensors and Bioelectronics</em> (167), 112491, 2020. <a href="https://doi.org/10.1016/j.bios.2020.112491" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1016/j.bios.2020.112491</a></li>
+                <li>Guangcai Tan, Sidan Lu, Nan Xu, Dingxue Gao, Xiuping Zhu*. Pseudocapacitive behaviors of polypyrene grafted activated carbon and MnO2 electrodes to enable fast and efficient membrane-free capacitive deionization. <em>Environmental Science & Technology</em> (54), 9, 2020. <a href="https://doi.org/10.1021/acs.est.9b07182" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1021/acs.est.9b07182</a></li>
+                <li>Sidan Lu, Yujiao Sun, Baiyun Lu, Danyang Zheng, Shangwei Xu. Change of abundance and correlation of Nitrospira inopinata-like comammox and populations in nitrogen cycle during different seasons. <em>Chemosphere</em> (241), 125098, 2020. <a href="https://doi.org/10.1016/j.chemosphere.2019.125098" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1016/j.chemosphere.2019.125098</a></li>
+                <li>Sidan Lu, Guangcai Tan, Xiuping Zhu*. H2 evolution catalysts for microbial electrolysis cells (Book chapter). <em>Novel Catalyst Materials For Bioelectrochemical Systems: Fundamentals and Applications, American Chemical Society</em> 27-43, 2020. <a href="https://doi.org/10.1021/bk-2020-1342.ch002" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1021/bk-2020-1342.ch002</a></li>
+                <li>Guangcai Tan, Sidan Lu, Jizhou Fan, Guoqiang Li, Xiuping Zhu*. Chloride-ion concentration flow cells for efficient salinity gradient energy recovery with bismuth oxychloride electrodes. <em>Electrochimica Acta</em> (322), 134724, 2019. <a href="https://doi.org/10.1016/j.electacta.2019.134724" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1016/j.electacta.2019.134724</a></li>
+                <li>Sidan Lu, Hongna Li, Guangcai Tan, Fang Wen, Michael T Flynn, Xiuping Zhu*. Resource recovery microbial fuel cells for urine-containing wastewater treatment without external energy consumption. <em>Chemical Engineering Journal</em> (373), 1072-1080. 2019. <a href="https://doi.org/10.1016/j.cej.2019.05.130" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1016/j.cej.2019.05.130</a></li>
+                <li>Sidan Lu, Binghan Xie, Bingfeng Liu, Baiyun Lu, Defeng Xing*. Neglected effects of inoculum preservation on the start-up of psychrophilic bioelectrochemical systems and shaping bacterial communities at low temperature. <em>Frontiers in Microbiology</em> (10), 935, 2020. <a href="https://doi.org/10.3389/fmicb.2019.00935" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.3389/fmicb.2019.00935</a></li>
+                <li>Tan, Guangcai, Hongna Li, Haihui Zhu, Sidan Lu, Jizhou Fan, Guoqiang Li, and Xiuping Zhu*. Concentration flow cells based on chloride-ion extraction and insertion with metal chloride electrodes for efficient salinity gradient energy harvest. <em>ACS Sustainable Chemistry & Engineering</em> (11), 6, 15212-15218, 2018. <a href="https://doi.org/10.1021/acssuschemeng.8b03657" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1021/acssuschemeng.8b03657</a></li>
+                <li>Yujiao Sun, Sidan Lu, Xuan Zhao, Aizhong Ding, Lei Wang. Long-term oil pollution and in situ microbial response of groundwater in northwest China. <em>Archives of Environmental Contamination and Toxicology</em> (72), 4, 2016. <a href="https://doi.org/10.1007/s00244-017-0405-x" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1007/s00244-017-0405-x</a></li>
+                <li>Sidan Lu, Yujiao Sun, Xuan Zha, Lei Wang, Danyang Zheng. Impact of precipitation on Fenghe River water and aquatic microorganisms. <em>Environmental Science</em> 7-19, 2016. <a href="https://doi.org/10.13227/j.hjkx.2016.07.019" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.13227/j.hjkx.2016.07.019</a></li>
+                <li>Sidan Lu, Yujiao Sun, Xuan Zhao, Lei Wang, Aizhong Ding, Xiaohui Zhao. Sequencing insights into microbial communities in the water and sediments of Fenghe River, China. <em>Archives of Environmental Contamination and Toxicology</em> (71), 122-132, 2016. <a href="https://doi.org/10.1007/s00244-016-0277-5" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1007/s00244-016-0277-5</a></li>
+                <li>Danyang Zheng, Yujiao Sun*, Huijuan Li, Sidan Lu, Mingjun Shan, Shangwei Xu. Multistage AO activated sludge process for paraformaldehyde wastewater treatment and microbial community structure analysis. <em>Journal of Chemistry</em> 2016. <a href="https://doi.org/10.1155/2016/2746715" target="_blank" rel="noopener noreferrer" class="publication-doi">DOI: 10.1155/2016/2746715</a></li>
+            </ol>
+
+            <h3 class="text-xl font-semibold text-slate-700 mt-8 mb-3">In Preparation</h3>
+            <ul class="list-disc list-outside space-y-3 pl-5 text-slate-700">
+                <li>Sidan Lu, Fang Lin, Mahlet Garedew, Ho Yin Tse, Andrew Champlin, Hanno Erythropel, Julie Zimmerman, Paul Anastas. One-pot electrochemical synthesis of adipic acid from lignin-derived catechol. (Expected 2025)</li>
+                <li>Laurene Petitjean, Mahlet Garedew, Sidan Lu, Theodora Matringe, Hanno Erethropel, Chun-Ho Lam*, Paul T. Anastas. Renewable Catechols from Lignin: A versatile platform for chemical and material applications. (Expected 2025)</li>
+                <li>Sidan Lu, Meiqi Yang, Xinyi Wang, Aaron Leininger, David Jassby, Eric Hoek, Zhiyong Jason Ren*. Conductive fabric distillation for interfacial clean water production. (Expected 2024)</li>
+            </ul>
+        </section>
+
+        <!-- Research Grants Section -->
+        <section id="grants" class="scroll-mt-20 card">
+            <h2 class="section-title">Research Grants & Funded Projects</h2>
+            <div>
+                <h3 class="item-title">Lignin to jet-range aromatic hydrocarbons by an advanced electrochemical approach</h3>
+                <p class="item-subtitle text-slate-700">Funded by Southwest Airlines (via Yale School of the Environment), 2025</p>
+                <ul class="list-disc list-inside text-slate-700 mt-2 space-y-1 pl-2">
+                    <li>Proposal accepted for funded research collaboration with Southwest Airlines.</li>
+                    <li>Sole author on original submission; revised version included advisor and lab manager as collaborators.</li>
+                    <li>Led project development and proposal writing, responsible for project execution.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Presentations Section -->
+        <section id="presentations" class="scroll-mt-20 card">
+            <h2 class="section-title">Presentations</h2>
+            <h3 class="text-xl font-semibold text-slate-700 mb-3">Contributed Talks</h3>
+            <ul class="list-disc list-outside space-y-2 pl-5 text-slate-700">
+                <li>Sidan Lu. Solar-biased microbial electrolysis cells for hydrogen production under visible light irradiation. Graduate Student Research Conference, LSU. 2021</li>
+                <li>Sidan Lu. Resources recovery from wastewater using advanced bioelectrochemical systems. The 4th International Young Scholars Shenzhou Forum, Harbin, China, 2019</li>
+                <li>Sidan Lu. Long-term oil pollution and in situ microbial response of groundwater. IWA Congress and Exhibition. Brisbane, Australia, 2016</li>
+            </ul>
+
+            <h3 class="text-xl font-semibold text-slate-700 mt-6 mb-3">Poster Presentations</h3>
+            <ul class="list-disc list-outside space-y-2 pl-5 text-slate-700">
+                <li>Sidan Lu. Membrane electrolysis distillation (MED) for volatile fatty acids separation from pH-neutral fermented wastewater. ISMET, Houston, U.S., 2024</li>
+                <li>Sidan Lu. Temperature dependence of acids recovery from wastewater electro-fermentation. AEESP, Boston, U.S., 2023</li>
+                <li>Sidan Lu. Resource recovery microbial fuel cells for urine-containing wastewater treatment without external energy consumption. ISMET7, Okinawa, Japan, 2019</li>
+                <li>Sidan Lu. Mo2N nanobelt cathodes for efficient hydrogen production in microbial electrolysis cells. The 4th IWA Conference of Science Summit on Urban Water. Harbin, China, 2018</li>
+                <li>Sidan Lu. Resource-recovery microbial fuel cells for space wastewater treatment. Louisiana Space Fall Council Meeting. Baton Rouge, U.S., 2017</li>
+            </ul>
+        </section>
+
+        <!-- Honors and Awards Section -->
+        <section id="honors" class="scroll-mt-20 card">
+            <h2 class="section-title">Honors and Awards</h2>
+            <ul class="list-disc list-outside space-y-3 pl-5 text-slate-700">
+                <li>Oral presentation award in the LSU Graduate Student Research Conference Competition. 2021</li>
+                <li>
+                    LSU Graduate School Economic Development Award (2019)
+                    <p class="text-sm text-slate-600 pl-4">Award to doctoral students whose study and/or research will directly affect the economic development of Louisiana and are to be used to attract superior doctoral graduate students to the program.</p>
+                </li>
+                <li>Oral presentation award in the 4th IWA Conference of Science Summit on Urban Water (2018)</li>
+                <li>
+                    National Graduate Student Scholarship (China) (2016)
+                    <p class="text-sm text-slate-600 pl-4">Applicants evaluated based on the academic performance, research achievements, and overall abilities on a national scale.</p>
+                </li>
+                <li>BNU Graduate School First-Class Scholarship (2014)</li>
+                <li>Third Prize in the National Youth Scientific Innovation Contest (2014)</li>
+                <li>Participated in National University Science and Technology Innovation Contest (2012)</li>
+            </ul>
+        </section>
+
+        <!-- Teaching and Mentoring Section -->
+        <section id="teaching" class="scroll-mt-20 card">
+            <h2 class="section-title">Teaching and Mentoring</h2>
+            <h3 class="text-xl font-semibold text-slate-700 mb-3">Guest Lectures</h3>
+            <ul class="list-disc list-outside space-y-3 pl-5 text-slate-700">
+                <li>
+                    Undergraduate Course EVEG 4780: Renewable Energy and Power Generation
+                    <p class="text-sm text-slate-600 pl-4">Contribution: 2/16 lectures. Number of Students: 10 (Louisiana State University, Spring 2019)</p>
+                </li>
+                <li>
+                    Graduate Course CE 7105: Advanced Topics in Water Quality and Treatment
+                    <p class="text-sm text-slate-600 pl-4">Contribution: 2/16 lectures. Number of Students: 30 (Louisiana State University, Fall 2017)</p>
+                </li>
+            </ul>
+
+            <h3 class="text-xl font-semibold text-slate-700 mt-6 mb-3">Graduate Student Co-Mentoring</h3>
+            <ul class="list-disc list-outside space-y-1 pl-5 text-slate-700">
+                <li>Aaron Leininger (Princeton University, 2021-2024)</li>
+            </ul>
+
+            <h3 class="text-xl font-semibold text-slate-700 mt-6 mb-3">Undergraduate Student Mentoring</h3>
+            <ul class="list-disc list-outside space-y-1 pl-5 text-slate-700">
+                <li>Toby Jiang (Louisiana State University, 2019-2021)</li>
+                <li>Alexander T. Pluta (Louisiana State University, 2017-2020)</li>
+            </ul>
+        </section>
+
+        <!-- Professional Activities Section -->
+        <section id="activities" class="scroll-mt-20 card">
+            <h2 class="section-title">Professional Activities & Affiliations</h2>
+            <h3 class="text-xl font-semibold text-slate-700 mb-3">Peer Reviewer</h3>
+            <p class="text-sm text-slate-600 mb-2">(13 manuscripts)</p>
+            <ul class="list-disc list-outside columns-1 sm:columns-2 gap-x-6 space-y-1 pl-5 text-slate-700">
+                <li>Bioresource & Technology (2 manuscripts)</li>
+                <li>Environmental Science: Water Research & Technology (2 manuscripts)</li>
+                <li>Science of The Total Environment (2 manuscripts)</li>
+                <li>Joule (1 manuscript)</li>
+                <li>Environmental Science & Technology (1 manuscript)</li>
+                <li>Chemosphere (1 manuscript)</li>
+                <li>Environmental Pollution (1 manuscript)</li>
+                <li>BioMed Research International (1 manuscript)</li>
+                <li>ACS Sustainable Chemistry & Engineering (1 manuscript)</li>
+                <li>Frontier in Microbiology (1 manuscript)</li>
+            </ul>
+
+            <h3 class="text-xl font-semibold text-slate-700 mt-6 mb-3">Scientific Committee and Proposal Review Panel</h3>
+            <ul class="list-disc list-outside space-y-1 pl-5 text-slate-700">
+                <li>National Science Foundation (2024)</li>
+                <li>The 17th IWA World Congress on Anaerobic Digestion (2022)</li>
+            </ul>
+            
+            <h3 class="text-xl font-semibold text-slate-700 mt-6 mb-3">Affiliations</h3>
+            <ul class="list-disc list-outside space-y-1 pl-5 text-slate-700">
+                <li>American Chemical Society (ACS)</li>
+                <li>Association of Environmental Engineering and Science Professors (AEESP)</li>
+            </ul>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-800 text-white text-center p-6 mt-12">
+        <p>&copy; <span id="currentYear"></span> Sidan Lu. All rights reserved.</p>
+        <p class="text-sm text-slate-400 mt-1">Interactive resume created with HTML, Tailwind CSS, and JavaScript.</p>
+    </footer>
+
+    <script>
+        // JavaScript for Navigation and other interactions
+
+        // Mobile menu toggle
+        const btn = document.querySelector("button.mobile-menu-button");
+        const menu = document.querySelector("#mobile-menu");
+        const navLinksMobile = menu.querySelectorAll("a.nav-link");
+
+        btn.addEventListener("click", () => {
+            const isHidden = menu.classList.contains("hidden");
+            if (isHidden) {
+                menu.classList.remove("hidden");
+                setTimeout(() => {
+                     menu.classList.remove("-translate-y-full");
+                }, 10); // Small delay to allow display block to take effect before transition
+            } else {
+                menu.classList.add("-translate-y-full");
+                menu.addEventListener('transitionend', () => {
+                    menu.classList.add("hidden");
+                }, { once: true });
+            }
+        });
+        
+        // Close mobile menu when a link is clicked
+        navLinksMobile.forEach(link => {
+            link.addEventListener('click', () => {
+                 menu.classList.add("-translate-y-full");
+                menu.addEventListener('transitionend', () => {
+                    menu.classList.add("hidden");
+                }, { once: true });
+            });
+        });
+
+
+        // Active navigation link highlighting on scroll
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll("nav a.nav-link"); // Desktop and mobile links
+
+        window.addEventListener("scroll", navHighlighter);
+
+        function navHighlighter() {
+            let scrollY = window.pageYOffset;
+            let currentSectionId = "";
+            const navBarHeight = document.getElementById('navbar') ? document.getElementById('navbar').offsetHeight : 70; // Fallback height
+
+
+            sections.forEach(current => {
+                const sectionHeight = current.offsetHeight;
+                const sectionTop = current.offsetTop - navBarHeight - 50; // Adjusted offset
+                
+                if (scrollY >= sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    currentSectionId = current.getAttribute("id");
+                }
+            });
+            
+            if (!currentSectionId && sections.length > 0) {
+                if (scrollY < sections[0].offsetTop - navBarHeight - 50) {
+                   // No section highlighted if above the first section
+                } 
+                else if (scrollY + window.innerHeight >= document.body.offsetHeight - 50) { 
+                    currentSectionId = sections[sections.length - 1].getAttribute("id");
+                }
+            }
+
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                // Check if the link's href matches the current section ID, considering the '#'
+                if (link.getAttribute("href") === "#" + currentSectionId) {
+                    link.classList.add("active");
+                }
+            });
+        }
+        
+        // Initial call to highlight nav link on page load, in case the page is loaded scrolled to a section
+        navHighlighter();
+
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Smooth scroll for all anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navBarHeight = document.getElementById('navbar') ? document.getElementById('navbar').offsetHeight : 70; // Fallback height
+                    const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = elementPosition - navBarHeight - 20; // Extra 20px padding
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: "smooth"
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
