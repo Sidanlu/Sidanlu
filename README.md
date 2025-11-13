@@ -1,5 +1,5 @@
 ## About Me 👋
-I am a Postdoctoral Research Associate at Yale University with deep expertise in electrochemical systems, membrane technologies, and resource recovery for sustainable applications. My work involves designing, operating, and optimizing aqueous and non-aqueous electrochemical reactors for applications such as hydrogen production, wastewater treatment, and the recovery of nutrients and organic acids from renewable and waste-derived sources.
+I am a Postdoctoral Research Associate at Yale University with expertise in green electrochemistry, membrane technologies, and resource recovery for sustainable applications. I design aqueous and non-aqueous electrochemical reactors for applications such as hydrogen production, wastewater treatment, and the recovery of nutrients and organic acids from renewable and waste-derived sources.
 
 My research approach integrates electrochemical cell design with advanced materials characterization, driven by a commitment to circular economy principles, carbon reduction, and system-level innovation. I am currently focused on advancing low-carbon, electro-driven processes for resource recovery and the development of green materials.
 
