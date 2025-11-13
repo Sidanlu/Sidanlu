@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidan Lu - Personal Homepage</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', 'Noto Sans', sans-serif;
+            background-color: #ffffff;
+            color: #1f2937; /* slate-800 */
+        }
+        .nav-link.active {
+            color: #3b82f6; /* blue-500 */
+            font-weight: 500;
+        }
+        .section-title {
+            font-size: 2.25rem; /* text-4xl */
+            font-weight: 700; /* bold */
+            color: #111827; /* gray-900 */
+            margin-bottom: 2.5rem; /* mb-10 */
+            text-align: center;
+        }
+        #home {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+        #banner-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+        #home::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+        .publication-item {
+            border-bottom: 1px solid #e5e7eb; /* gray-200 */
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        .publication-item:last-child {
+            border-bottom: none;
+        }
+        .contact-icon {
+            transition: transform 0.3s ease;
+        }
+        .contact-icon:hover {
+            transform: scale(1.1);
+        }
+        /* Mobile menu styles */
+        #mobile-menu {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#home" class="text-xl font-bold text-gray-800">Sidan Lu</a>
+                </div>
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex md:items-center md:space-x-8">
+                    <a href="#home" class="nav-link text-gray-600 hover:text-blue-500 transition duration-300">Home</a>
+                    <a href="#about" class="nav-link text-gray-600 hover:text-blue-500 transition duration-300">About Me</a>
+                    <a href="#resume" class="nav-link text-gray-600 hover:text-blue-500 transition duration-300">Resume</a>
+                    <a href="#publications" class="nav-link text-gray-600 hover:text-blue-500 transition duration-300">Publications</a>
+                    <a href="#contact" class="nav-link text-gray-600 hover:text-blue-500 transition duration-300">Contact</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button class="outline-none mobile-menu-button">
+                        <svg class="w-6 h-6 text-gray-600 hover:text-blue-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+                            <path d="M4 6h16M4 12h16m-7 6h7"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden opacity-0 transform -translate-y-4">
+            <a href="#home" class="nav-link block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Home</a>
+            <a href="#about" class="nav-link block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">About Me</a>
+            <a href="#resume" class="nav-link block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Resume</a>
+            <a href="#publications" class="nav-link block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Publications</a>
+            <a href="#contact" class="nav-link block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Home/Banner Section -->
+    <section id="home">
+        <video id="banner-video" autoplay loop muted playsinline>
+            <source src="https://github.com/Sidanlu/Sidanlu/raw/refs/heads/main/banner.webm" type="video/webm">
+            Your browser does not support the video tag.
+        </video>
+        <div class="z-10">
+            <h1 class="text-5xl md:text-7xl font-bold drop-shadow-lg">Sidan Lu</h1>
+            <p class="mt-4 text-xl md:text-2xl text-gray-200 drop-shadow-md">Researcher Dedicated to Sustainable Development</p>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- About Me -->
+        <section id="about" class="scroll-mt-16 py-20">
+            <h2 class="section-title">About Me</h2>
+            <div class="max-w-3xl mx-auto bg-gray-50 p-8 rounded-lg shadow-sm">
+                <p class="text-lg leading-relaxed text-gray-700 mb-4">
+                    I am currently a Postdoctoral Research Associate at Yale University with deep expertise in electrochemical systems, membrane technologies, and resource recovery for sustainable applications. My work involves designing, operating, and optimizing aqueous and non-aqueous electrochemical reactors for various applications, such as hydrogen production, wastewater treatment, and the recovery of nutrients and organic acids from renewable and waste-derived sources.
+                </p>
+                <p class="text-lg leading-relaxed text-gray-700">
+                    My research approach combines electrochemical cell design with advanced materials characterization, guided by a strong commitment to circular economy principles, carbon reduction, and system-level innovation. I am currently focused on advancing low-carbon, electro-driven processes for resource recovery and green materials development.
+                </p>
+            </div>
+        </section>
+
+        <!-- Resume -->
+        <section id="resume" class="scroll-mt-16 py-20 bg-gray-50 rounded-lg">
+            <h2 class="section-title">My Resume</h2>
+            <div class="max-w-4xl mx-auto text-center">
+                 <p class="mb-6 text-gray-600">You can preview my resume online below, or click the button to download the PDF version.</p>
+                <a href="https://github.com/Sidanlu/Sidanlu/raw/85b3b63933e6e2ff60398e35fec0a062bac7562c/CV%20-%20Sidan%20Lu%20-May15%202025.pdf" target="_blank" class="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300 mb-8">
+                    Download Resume (PDF)
+                </a>
+                <div class="aspect-w-4 aspect-h-5">
+                    <iframe src="https://docs.google.com/gview?url=https://github.com/Sidanlu/Sidanlu/raw/85b3b63933e6e2ff60398e35fec0a062bac7562c/CV%20-%20Sidan%20Lu%20-May15%202025.pdf&embedded=true" class="w-full h-full border-2 border-gray-200 rounded-lg shadow-lg" frameborder="0"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Publications -->
+        <section id="publications" class="scroll-mt-16 py-20">
+            <h2 class="section-title">Key Publications</h2>
+            <div class="max-w-4xl mx-auto">
+                <div class="publication-item">
+                    <p class="text-gray-800"><strong>Lu, S.</strong>, McGaughey, A., Im, S., et al. (2024). Membrane electrolysis distillation for volatile fatty acids extraction from pH-neutral fermented wastewater. <em>Water Research</em>, 265, 122306.</p>
+                </div>
+                <div class="publication-item">
+                    <p class="text-gray-800">Leininger, A., <strong>Lu, S.</strong>, Jiang, J., et al. (2024). The convergence of lactic acid microbiomes and metabolites in long-term electrofermentation. <em>Environmental Science and Ecotechnology</em>, 22, 100459.</p>
+                </div>
+                <div class="publication-item">
+                    <p class="text-gray-800"><strong>Lu, S.</strong>, Leininger, A., Jassby, D., et al. (2024). Temperature dependence of acids recovery from wastewater electro-fermentation. <em>Resources, Conservation and Recycling</em>, 203, 147407.</p>
+                </div>
+                <div class="publication-item">
+                    <p class="text-gray-800"><strong>Lu, S.</strong>, Sun, W., & Zhu, X. (2022). Synergistic effects between dual-photoelectrodes and bioanode enhance sustainable hydrogen and electricity production from wastewater. <em>Resources, Conservation and Recycling</em>, 183, 106367.</p>
+                </div>
+                <div class="publication-item">
+                    <p class="text-gray-800"><strong>Lu, S.</strong>, Lan, J., Sun, W., et al. (2021). High energy recovery from salinity gradients in a concentration flow cell enhanced by bioelectrochemical currents. <em>Chemical Engineering Journal</em>, 426, 130826.</p>
+                </div>
+                 <div class="text-center mt-8">
+                     <p class="text-gray-600">For more publications, please see my full resume.</p>
+                 </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact" class="scroll-mt-16 py-20 bg-gray-800 text-white rounded-lg">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="text-4xl font-bold mb-4">Contact Me</h2>
+                <p class="text-gray-300 mb-8 text-lg">I look forward to discussing academic and collaboration opportunities.</p>
+                <div class="flex justify-center items-center space-x-8">
+                    <a href="mailto:sidan.lu@yale.edu" class="text-gray-300 hover:text-white contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                        <span class="sr-only">Email</span>
+                    </a>
+                    <a href="https://orcid.org/0000-0002-5008-9467" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
+                        <span class="sr-only">ORCID</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/sidanlu/en" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor" class="lucide lucide-linkedin">
+                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                        </svg>
+                        <span class="sr-only">LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="text-center p-6 mt-16 bg-white">
+        <p class="text-gray-500">&copy; <span id="currentYear"></span> Sidan Lu. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript for Navigation and other interactions
+
+        // Mobile menu toggle
+        const btn = document.querySelector("button.mobile-menu-button");
+        const menu = document.querySelector("#mobile-menu");
+
+        btn.addEventListener("click", () => {
+            const isHidden = menu.classList.contains("hidden");
+            if (isHidden) {
+                menu.classList.remove("hidden");
+                setTimeout(() => {
+                    menu.classList.remove("opacity-0", "-translate-y-4");
+                }, 10);
+            } else {
+                menu.classList.add("opacity-0", "-translate-y-4");
+                menu.addEventListener('transitionend', () => {
+                    menu.classList.add("hidden");
+                }, { once: true });
+            }
+        });
+        
+        // Close mobile menu when a link is clicked
+        const mobileNavLinks = document.querySelectorAll("#mobile-menu a.nav-link");
+        mobileNavLinks.forEach(link => {
+            link.addEventListener("click", () => {
+                 menu.classList.add("opacity-0", "-translate-y-4");
+                menu.addEventListener('transitionend', () => {
+                    menu.classList.add("hidden");
+                }, { once: true });
+            });
+        });
+
+        // Active navigation link highlighting on scroll
+        const sections = document.querySelectorAll("section[id]");
+        const navLinks = document.querySelectorAll("nav a.nav-link");
+        const navBar = document.getElementById('navbar');
+
+        window.addEventListener("scroll", navHighlighter);
+
+        function navHighlighter() {
+            let scrollY = window.pageYOffset;
+            let currentSectionId = "";
+            const navBarHeight = navBar.offsetHeight;
+
+            // Change navbar style on scroll
+            if (scrollY > 50) {
+                navBar.classList.add('bg-white', 'shadow-md');
+                navBar.classList.remove('bg-white/80');
+            } else {
+                navBar.classList.remove('bg-white', 'shadow-md');
+                navBar.classList.add('bg-white/80');
+            }
+
+            sections.forEach(current => {
+                const sectionHeight = current.offsetHeight;
+                const sectionTop = current.offsetTop - navBarHeight - 50;
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    currentSectionId = current.getAttribute("id");
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove("active");
+                if (link.getAttribute("href") === "#" + currentSectionId) {
+                    link.classList.add("active");
+                }
+            });
+        }
+
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>

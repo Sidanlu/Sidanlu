@@ -1,283 +1,486 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidan Lu - Personal Homepage</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Noto+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>Professional Portfolio</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Roboto', 'Noto Sans', sans-serif;
-            background-color: #ffffff;
-            color: #1f2937; /* slate-800 */
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            line-height: 1.6;
+            font-size: 18px;
+            color: #333;
+            background: #fff;
         }
-        .nav-link.active {
-            color: #3b82f6; /* blue-500 */
-            font-weight: 500;
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
-        .section-title {
-            font-size: 2.25rem; /* text-4xl */
-            font-weight: 700; /* bold */
-            color: #111827; /* gray-900 */
-            margin-bottom: 2.5rem; /* mb-10 */
-            text-align: center;
+        
+        .logo {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            letter-spacing: 1px;
         }
-        #home {
-            height: 100vh;
-            position: relative;
+        
+        .nav-links {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            list-style: none;
+            gap: 2.5rem;
+            z-index: 10;
+            padding: 2rem 0 0 10rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
             color: white;
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s ease;
         }
-        #banner-video {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -2;
+        
+        .nav-links a:hover {
+            color: #f0f0f0;
         }
-        #home::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: -1;
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://upload.wikimedia.org/wikipedia/commons/thumb/3/30/PikiWiki_Israel_50602_hula_valley.jpg/1280px-PikiWiki_Israel_50602_hula_valley.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 0;
+            min-height: 50vh;
+            display: flex;
+            align-items: flex-end; /* Align items to the bottom */
+            justify-content: flex-start; /* Align items to the left */
+            position: relative;
         }
-        .publication-item {
-            border-bottom: 1px solid #e5e7eb; /* gray-200 */
-            padding-bottom: 1rem;
+        
+        .hero-content {
+            max-width: 900px;
+            /* margin: 0 auto; */ /* Removed to allow left alignment */
+        }
+
+        .hero-content h1 {
+            font-size: 3.0rem;
+            letter-spacing: 2px;
+            padding: 0 0 2rem 10rem;
+            text-align: left;
+        }
+        
+        .hero-content .subtitle {
+            font-size: 1.6rem;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+        
+        .hero-content .description {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            line-height: 1.8;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: transparent;
+            color: white;
+            padding: 15px 40px;
+            text-decoration: none;
+            border: 3px solid white;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: white;
+            color: #333;
+        }
+        
+        /* Section Styles */
+        .section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: left;
+            font-family: Arial, sans-serif;
+            font-size: 28px;
+            margin-bottom: 4rem;
+            color: #2c3e50;
+            letter-spacing: 1px;
+        }
+        
+        #contact .section-title {
+            font-size: 2.5rem; /* Adjusted size */
+            /* padding-left: 8rem; */ /* Removed for left alignment */
+        }
+        
+        #about .section-title {
+            font-size: 2.5rem; /* Matching Contact title */
+            margin-bottom: 2rem; /* Reduced space below title */
+            /* padding-left: 8rem; */ /* Removed for left alignment */
+        }
+        
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr; /* Photo on left, text on right */
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            color: #555;
+        }
+        
+        .about-text h3 {
+            font-family: Arial, sans-serif;
+            font-size: 32px;
+            color: #2c3e50;
             margin-bottom: 1rem;
         }
-        .publication-item:last-child {
-            border-bottom: none;
+        
+        .about-image {
+            text-align: center;
+            /* margin: 2rem 0; */ /* No longer needed with grid gap */
         }
-        .contact-icon {
+        
+        .about-image img {
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+        
+        .portfolio-item {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
             transition: transform 0.3s ease;
         }
-        .contact-icon:hover {
-            transform: scale(1.1);
+        
+        .portfolio-item:hover {
+            transform: translateY(-10px);
         }
-        /* Mobile menu styles */
-        #mobile-menu {
-            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+        
+        .portfolio-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .portfolio-content {
+            padding: 2rem;
+        }
+        
+        .portfolio-content h3 {
+            font-family: Arial, sans-serif;
+            font-size: 32px;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .portfolio-content p {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        .portfolio-tag {
+            display: inline-block;
+            background: #f8f9fa;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #666;
+            margin-right: 10px;
+        }
+        
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .service-card {
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .service-card .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #8b5a2b;
+        }
+        
+        .service-card h3 {
+            font-family: Arial, sans-serif;
+            font-size: 32px;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+        
+        .service-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        
+        #contact {
+            padding-top: 0;
+        }
+
+        .contact-info {
+            /* Styles removed to allow single column layout */
+        }
+        
+        .contact-item h4 {
+            font-family: Arial, sans-serif; /* Inherits from body */
+            font-size: 1.1rem; /* Body-like size */
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-item p {
+            color: #666;
+        }
+        
+        .contact-item a {
+            color: #8b5a2b;
+            text-decoration: none;
+        }
+
+        .social-links {
+            margin: 1rem 0;
+            text-align: left;
+        }
+        
+        .social-links a {
+            text-decoration: none;
+        }
+        
+        /* Footer */
+        footer {
+            background: #f8f9fa;
+            color: white;
+            text-align: center;
+            padding: 4rem 0;
+        }
+        
+        footer .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        footer .social-links a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        footer .social-links a:hover {
+            color: #8b5a2b;
+        }
+
+        footer .social-links svg {
+            width: 36px;
+            height: 36px;
+            fill: currentColor;
+        }
+
+        footer p {
+            color: #666;
+            font-size: 1rem;
+            font-weight: normal;
+        }
+        
+        .social-links a:hover {
+            color: #8b5a2b;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content .subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section {
+                padding: 60px 0;
+            }
+        }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Background Variants */
+        .bg-light {
+            background: #f8f9fa;
+        }
+        
+        .bg-accent {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
     </style>
 </head>
 <body>
-    <!-- Navigation Bar -->
-    <nav id="navbar" class="bg-white/80 backdrop-blur-md shadow-sm sticky top-0 z-50 transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
-                <!-- Logo -->
-                <div class="flex-shrink-0">
-                    <a href="#home" class="text-xl font-bold text-gray-800">Sidan Lu</a>
-                </div>
-                <!-- Desktop Menu -->
-                <div class="hidden md:flex md:items-center md:space-x-8">
-                    <a href="#home" class="nav-link text-gray-600 hover:text-blue-500 transition duration-300">Home</a>
-                    <a href="#about" class="nav-link text-gray-600 hover:text-blue-500 transition duration-300">About Me</a>
-                    <a href="#resume" class="nav-link text-gray-600 hover:text-blue-500 transition duration-300">Resume</a>
-                    <a href="#publications" class="nav-link text-gray-600 hover:text-blue-500 transition duration-300">Publications</a>
-                    <a href="#contact" class="nav-link text-gray-600 hover:text-blue-500 transition duration-300">Contact</a>
-                </div>
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden flex items-center">
-                    <button class="outline-none mobile-menu-button">
-                        <svg class="w-6 h-6 text-gray-600 hover:text-blue-500" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
-                            <path d="M4 6h16M4 12h16m-7 6h7"></path>
-                        </svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden opacity-0 transform -translate-y-4">
-            <a href="#home" class="nav-link block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Home</a>
-            <a href="#about" class="nav-link block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">About Me</a>
-            <a href="#resume" class="nav-link block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Resume</a>
-            <a href="#publications" class="nav-link block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Publications</a>
-            <a href="#contact" class="nav-link block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100">Contact</a>
-        </div>
-    </nav>
-
-    <!-- Home/Banner Section -->
-    <section id="home">
-        <video id="banner-video" autoplay loop muted playsinline>
-            <source src="https://github.com/Sidanlu/Sidanlu/raw/refs/heads/main/banner.webm" type="video/webm">
-            Your browser does not support the video tag.
-        </video>
-        <div class="z-10">
-            <h1 class="text-5xl md:text-7xl font-bold drop-shadow-lg">Sidan Lu</h1>
-            <p class="mt-4 text-xl md:text-2xl text-gray-200 drop-shadow-md">Researcher Dedicated to Sustainable Development</p>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <div class="logo"></div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="publications.html">Publications</a></li>
+                <li><a href="experience.html">News</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <h1>Lu Research</h1>
         </div>
     </section>
 
-    <!-- Main Content Container -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- About Me -->
-        <section id="about" class="scroll-mt-16 py-20">
-            <h2 class="section-title">About Me</h2>
-            <div class="max-w-3xl mx-auto bg-gray-50 p-8 rounded-lg shadow-sm">
-                <p class="text-lg leading-relaxed text-gray-700 mb-4">
-                    I am currently a Postdoctoral Research Associate at Yale University with deep expertise in electrochemical systems, membrane technologies, and resource recovery for sustainable applications. My work involves designing, operating, and optimizing aqueous and non-aqueous electrochemical reactors for various applications, such as hydrogen production, wastewater treatment, and the recovery of nutrients and organic acids from renewable and waste-derived sources.
-                </p>
-                <p class="text-lg leading-relaxed text-gray-700">
-                    My research approach combines electrochemical cell design with advanced materials characterization, guided by a strong commitment to circular economy principles, carbon reduction, and system-level innovation. I am currently focused on advancing low-carbon, electro-driven processes for resource recovery and green materials development.
-                </p>
+    <section id="about" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title">About</h2>
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="https://media.licdn.com/dms/image/v2/D4E03AQF83VDw3xIyYQ/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1691778248480?e=1764806400&v=beta&t=mrt9Nl7WP9eQgrzsp8DaComekbarqYBQsynFfb8sHwY" alt="Sidan Lu Profile Photo" style="width: 300px; height: 300px; object-fit: cover; border-radius: 50%;">
+                </div>
+                <div class="about-text">
+                    <p>
+                        My research applies Green Chemistry principles to address climate change by developing sustainable electrochemical methods to transform renewable lignocellulosic biomass, treat wastewater, and remediate pollution. In my current postdoctoral work, I am working on a project titled “One-pot electrochemical synthesis of nylon precursor dimethyl adipate from lignin-derived catechol”. I am preparing a manuscript with an anticipated submission date of Fall 2025. In my first postdoc at Princeton University, I investigated the volatile fatty acids production approaches from anaerobic wastewater treatment by engineering the micro-redox environments. I then developed an electro-membrane distillation reactor to extract volatile fatty acids from the treated wastewater. The researches were published in Resources, Conservation & Recycling and Water Research in 2024. My doctoral dissertation examined producing green hydrogen (H2) and recovering nutrients from wastewater using electrochemical approaches. The publications include those in Resources, Conservation & Recycling in 2022, Chemical Engineering Journal in 2021. Biosensors and Bioelectronics, Frontiers in Microbiology, a ACS book chapter in 2020, and Chemical Engineering Journal in 2019.
+                    </p>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Resume -->
-        <section id="resume" class="scroll-mt-16 py-20 bg-gray-50 rounded-lg">
-            <h2 class="section-title">My Resume</h2>
-            <div class="max-w-4xl mx-auto text-center">
-                 <p class="mb-6 text-gray-600">You can preview my resume online below, or click the button to download the PDF version.</p>
-                <a href="https://github.com/Sidanlu/Sidanlu/raw/85b3b63933e6e2ff60398e35fec0a062bac7562c/CV%20-%20Sidan%20Lu%20-May15%202025.pdf" target="_blank" class="inline-block bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300 mb-8">
-                    Download Resume (PDF)
+    <section id="contact" class="section bg-light">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 2rem;">Contact</h2>
+            <div class="contact-content" style="padding-left: 4rem;">
+                <div class="contact-info" style="text-align: left;">
+                    <h3 style="font-size: 2rem; font-weight: bold; color: #333; margin-bottom: 0.5rem;">Sidan Lu</h3>
+                    <div style="padding-left: 0.1rem;">
+                        <p style="font-size: 1.5rem; color: #555; font-weight: normal; margin-bottom: 1rem;">Postdoctoral Associate</p>
+                        <div class="contact-item">
+                            <p><a href="mailto:sidan.lu@yale.edu" style="color: black; font-weight: normal;">sidan.lu@yale.edu</a></p>
+                        </div>
+                        <div class="contact-item" style="margin-top: 1rem;">
+                            <p>
+                                Greely Memorial Laboratory<br>
+                                School of Environment,<br>
+                                <span style="color: #005ea2; text-decoration: underline;">Yale University</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="social-links" style="text-align: left; padding-top: 0.25rem;">
+                    <a href="https://scholar.google.com/citations?user=i3WQRusAAAAJ&hl=en" target="_blank" style="display: block; margin-bottom: 1rem; color: #005ea2; text-decoration: none; font-size: 1.1rem;">Google Scholar</a>
+                    <a href="https://www.linkedin.com/in/sidanlu/en" target="_blank" style="display: block; margin-bottom: 1rem; color: #005ea2; text-decoration: none; font-size: 1.1rem;">LinkedIn</a>
+                    <a href="https://orcid.org/0000-0002-5008-9467" target="_blank" style="display: block; color: #005ea2; text-decoration: none; font-size: 1.1rem;">ORCID</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/sidanlu/en" target="_blank" rel="noopener noreferrer" title="LinkedIn">
+                    <svg viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
                 </a>
-                <div class="aspect-w-4 aspect-h-5">
-                    <iframe src="https://docs.google.com/gview?url=https://github.com/Sidanlu/Sidanlu/raw/85b3b63933e6e2ff60398e35fec0a062bac7562c/CV%20-%20Sidan%20Lu%20-May15%202025.pdf&embedded=true" class="w-full h-full border-2 border-gray-200 rounded-lg shadow-lg" frameborder="0"></iframe>
-                </div>
+                <a href="https://orcid.org/0000-0002-5008-9467" target="_blank" rel="noopener noreferrer" title="ORCID">
+                    <svg viewBox="0 0 24 24"><path d="M12 0C5.372 0 0 5.372 0 12s5.372 12 12 12 12-5.372 12-12S18.628 0 12 0zM7.365 18.732V5.268h1.993v13.464H7.365zM9.93 10.31a2.57 2.57 0 11-2.569-2.57 2.57 2.57 0 012.569 2.57zM16.635 14.95v-3.463c0-.79-0.01-1.83-1.113-1.83-1.104 0-1.286.86-1.286 1.77v3.523H12.24V8.69h1.873v.87h.026c.265-.5.91-1.023 1.848-1.023 1.977 0 2.343 1.3 2.343 3.003v3.41H16.635z"/></svg>
+                </a>
+                <a href="https://scholar.google.com/citations?user=i3WQRusAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" title="Google Scholar">
+                    <svg viewBox="0 0 24 24"><path d="M12 24a7.5 7.5 0 01-7.5-7.5c0-2.01 1.55-4.5 4.5-4.5 1.15 0 2.2.4 3 1.05V12c0 2.07 1.68 3.75 3.75 3.75 2.07 0 3.75-1.68 3.75-3.75S20.07 8.25 18 8.25c-1.03 0-1.95.42-2.62 1.09.42-.9.62-1.95.62-3.09C16 2.68 13.32 0 10 0 6.68 0 4 2.68 4 6.25c0 1.5.53 2.85 1.38 3.9-1.12 1.05-1.88 2.55-1.88 4.35A7.5 7.5 0 0012 24z"/></svg>
+                </a>
             </div>
-        </section>
-
-        <!-- Publications -->
-        <section id="publications" class="scroll-mt-16 py-20">
-            <h2 class="section-title">Key Publications</h2>
-            <div class="max-w-4xl mx-auto">
-                <div class="publication-item">
-                    <p class="text-gray-800"><strong>Lu, S.</strong>, McGaughey, A., Im, S., et al. (2024). Membrane electrolysis distillation for volatile fatty acids extraction from pH-neutral fermented wastewater. <em>Water Research</em>, 265, 122306.</p>
-                </div>
-                <div class="publication-item">
-                    <p class="text-gray-800">Leininger, A., <strong>Lu, S.</strong>, Jiang, J., et al. (2024). The convergence of lactic acid microbiomes and metabolites in long-term electrofermentation. <em>Environmental Science and Ecotechnology</em>, 22, 100459.</p>
-                </div>
-                <div class="publication-item">
-                    <p class="text-gray-800"><strong>Lu, S.</strong>, Leininger, A., Jassby, D., et al. (2024). Temperature dependence of acids recovery from wastewater electro-fermentation. <em>Resources, Conservation and Recycling</em>, 203, 147407.</p>
-                </div>
-                <div class="publication-item">
-                    <p class="text-gray-800"><strong>Lu, S.</strong>, Sun, W., & Zhu, X. (2022). Synergistic effects between dual-photoelectrodes and bioanode enhance sustainable hydrogen and electricity production from wastewater. <em>Resources, Conservation and Recycling</em>, 183, 106367.</p>
-                </div>
-                <div class="publication-item">
-                    <p class="text-gray-800"><strong>Lu, S.</strong>, Lan, J., Sun, W., et al. (2021). High energy recovery from salinity gradients in a concentration flow cell enhanced by bioelectrochemical currents. <em>Chemical Engineering Journal</em>, 426, 130826.</p>
-                </div>
-                 <div class="text-center mt-8">
-                     <p class="text-gray-600">For more publications, please see my full resume.</p>
-                 </div>
-            </div>
-        </section>
-
-        <!-- Contact -->
-        <section id="contact" class="scroll-mt-16 py-20 bg-gray-800 text-white rounded-lg">
-            <div class="max-w-3xl mx-auto text-center">
-                <h2 class="text-4xl font-bold mb-4">Contact Me</h2>
-                <p class="text-gray-300 mb-8 text-lg">I look forward to discussing academic and collaboration opportunities.</p>
-                <div class="flex justify-center items-center space-x-8">
-                    <a href="mailto:sidan.lu@yale.edu" class="text-gray-300 hover:text-white contact-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mail"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-                        <span class="sr-only">Email</span>
-                    </a>
-                    <a href="https://orcid.org/0000-0002-5008-9467" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white contact-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-link-2"><path d="M9 17H7A5 5 0 0 1 7 7h2"/><path d="M15 7h2a5 5 0 1 1 0 10h-2"/><line x1="8" x2="16" y1="12" y2="12"/></svg>
-                        <span class="sr-only">ORCID</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/sidanlu/en" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-white contact-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="currentColor" class="lucide lucide-linkedin">
-                            <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
-                        </svg>
-                        <span class="sr-only">LinkedIn</span>
-                    </a>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <!-- Footer -->
-    <footer class="text-center p-6 mt-16 bg-white">
-        <p class="text-gray-500">&copy; <span id="currentYear"></span> Sidan Lu. All Rights Reserved.</p>
+            <p>&copy; 2024 Sidan Lu. All rights reserved.</p>
+        </div>
     </footer>
 
     <script>
-        // JavaScript for Navigation and other interactions
-
-        // Mobile menu toggle
-        const btn = document.querySelector("button.mobile-menu-button");
-        const menu = document.querySelector("#mobile-menu");
-
-        btn.addEventListener("click", () => {
-            const isHidden = menu.classList.contains("hidden");
-            if (isHidden) {
-                menu.classList.remove("hidden");
-                setTimeout(() => {
-                    menu.classList.remove("opacity-0", "-translate-y-4");
-                }, 10);
-            } else {
-                menu.classList.add("opacity-0", "-translate-y-4");
-                menu.addEventListener('transitionend', () => {
-                    menu.classList.add("hidden");
-                }, { once: true });
-            }
-        });
-        
-        // Close mobile menu when a link is clicked
-        const mobileNavLinks = document.querySelectorAll("#mobile-menu a.nav-link");
-        mobileNavLinks.forEach(link => {
-            link.addEventListener("click", () => {
-                 menu.classList.add("opacity-0", "-translate-y-4");
-                menu.addEventListener('transitionend', () => {
-                    menu.classList.add("hidden");
-                }, { once: true });
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
 
-        // Active navigation link highlighting on scroll
-        const sections = document.querySelectorAll("section[id]");
-        const navLinks = document.querySelectorAll("nav a.nav-link");
-        const navBar = document.getElementById('navbar');
-
-        window.addEventListener("scroll", navHighlighter);
-
-        function navHighlighter() {
-            let scrollY = window.pageYOffset;
-            let currentSectionId = "";
-            const navBarHeight = navBar.offsetHeight;
-
-            // Change navbar style on scroll
-            if (scrollY > 50) {
-                navBar.classList.add('bg-white', 'shadow-md');
-                navBar.classList.remove('bg-white/80');
-            } else {
-                navBar.classList.remove('bg-white', 'shadow-md');
-                navBar.classList.add('bg-white/80');
-            }
-
-            sections.forEach(current => {
-                const sectionHeight = current.offsetHeight;
-                const sectionTop = current.offsetTop - navBarHeight - 50;
-                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
-                    currentSectionId = current.getAttribute("id");
+        // Add active class to navigation on scroll
+        window.addEventListener('scroll', () => {
+            let current = '';
+            const sections = document.querySelectorAll('section');
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
                 }
             });
 
-            navLinks.forEach(link => {
-                link.classList.remove("active");
-                if (link.getAttribute("href") === "#" + currentSectionId) {
-                    link.classList.add("active");
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
                 }
             });
-        }
-
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
+        });
     </script>
 </body>
 </html>
